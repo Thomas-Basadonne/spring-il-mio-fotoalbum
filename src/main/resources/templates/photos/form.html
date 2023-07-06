@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/resources :: head(pageTitle='Photo Form')}">
+</head>
+<body th:with="isEdit=${photo.id != null}">
+<nav th:replace="~{/fragments/navbar :: navbar(current='photos')}"></nav>
+<h1 th:text="${isEdit ? 'Modifica Foto' : 'Aggiungi Foto'}"></h1>
+
+<div class="container">
+    <form class="row" id="photo-form" method="post" th:action="${formAction}" th:object="${photo}">
+        <div class="col-8">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors()}">
+                <ul>
+                    <li class="text-dark" th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+                </ul>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="titolo">Titolo della foto</label>
+                <input class="form-control" id="titolo"
+                       th:classappend="${#fields.hasErrors('titolo')} ? 'is-invalid' : ''"
+                       th:field="*{titolo}"
+                       type="text">
+                <div class="invalid-feedback" th:errors="*{titolo}" th:if="${#fields.hasErrors('titolo')}"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="descrizione">Descrizione della foto</label>
+                <textarea class="form-control" id="descrizione" rows="3"
+                          th:classappend="${#fields.hasErrors('descrizione')} ? 'is-invalid' : ''"
+                          th:field="*{descrizione}"></textarea>
+                <div class="invalid-feedback" th:errors="*{descrizione}"
+                     th:if="${#fields.hasErrors('descrizione')}"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="url">URL foto della foto</label>
+                <input class="form-control" id="url"
+                       th:classappend="${#fields.hasErrors('url')} ? 'is-invalid' : ''"
+                       th:field="*{url}"
+                       type="url">
+                <div class="invalid-feedback" th:errors="*{url}" th:if="${#fields.hasErrors('url')}"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="visibile">Visibilità immagine</label>
+                <select class="form-select" id="visibile" th:field="*{visibile}">
+                    <option value="true">Visibile</option>
+                    <option value="false">Non visibile</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-4">
+            <h3>Categorie</h3>
+            <div class="form-check" th:each="category : ${categoryList}">
+                <input class="form-check-input" th:field="*{categories}" th:id="${'category_' + category.id}"
+                       th:value="${category}"
+                       type="checkbox">
+                <label class="form-check-label" th:for="${'category_' + category.id}"
+                       th:text="${category.name}"></label>
+            </div>
+        </div>
+        <div class="col-12 text-center my-3">
+            <button class="btn btn-primary" type="submit">Salva</button>
+            <a class="btn btn-danger" th:href="@{/photos}">Annulla</a>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

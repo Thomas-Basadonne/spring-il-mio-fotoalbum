@@ -109,6 +109,7 @@ public class Photo {
         this.categories = categories;
     }
 
+
     // getter custom per il timestamp formattato
     @JsonIgnore
     public String getFormattedCreatedAt() {
