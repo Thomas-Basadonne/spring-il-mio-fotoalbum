@@ -23,6 +23,16 @@
             <a class="btn btn-primary" th:href="@{/photos}">Torna alla lista</a>
         </div>
     </div>
+    <div>
+        <h2>category:</h2>
+        <!--L'operatore di sicurezza di navigazione ? viene utilizzato per accedere alle proprietà di un oggetto solo se l'oggetto stesso non è null.  -->
+        <ul th:if="${photo.categories?.size() > 0}">
+            <li th:each="category : ${photo.categories}" th:text="${category.name}"></li>
+        </ul>
+        <div class="alert alert-info" th:unless="${photo.categories?.size() > 0}">
+            Non sono stati aggiunti category
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/resources :: head(pageTitle='Lista Categorie')}"></head>
+<body>
+<nav th:replace="~{/fragments/navbar :: navbar(current='categories')}"></nav>
+<div class="container">
+    <h1>Categorie:</h1>
+    <hr>
+    <!-- lista categorie -->
+    <div class="row">
+        <div class="col-6">
+            <ul class="list-group" th:if="${categoryList != null and categoryList.size() > 0}">
+                <li class="list-group-item d-flex align-items-center justify-content-between"
+                    th:each="category : ${categoryList}" th:object="${category}">
+                    <span th:text="*{name}"></span>
+                    <span class="text-muted text-start" th:text="*{description}"></span>
+
+                    <span class="d-flex align-items-center justify-content-center">
+                        <a class="mx-1" th:href="@{/categories/edit/{id}(id=${category.id})}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <form method="post" th:action="@{/categories/delete/{id}(id=${category.id})}">
+                            <button class="p-0 border-0 text-danger bg-transparent" type="submit">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </span>
+                </li>
+            </ul>
+            <div class="alert alert-info" th:unless="${categoryList != null and categoryList.size() > 0}">Non ci sono
+                categorie nella lista :(
+            </div>
+        </div>
+        <div class="col-6">
+            <!-- form aggiunta/modifica categoria -->
+            <form id="category-form"
+                  method="post"
+                  th:action="@{/categories/save}"
+                  th:object="${categoryObj}">
+                <input th:field="*{id}" type="hidden">
+                <div class="mb-3">
+                    <label class="form-label" for="name">Nome della categoria</label>
+                    <input class="form-control" id="name"
+                           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+                           th:field="*{name}"
+                           type="text">
+                    <div class="invalid-feedback"
+                         th:errors="*{name}"
+                         th:if="${#fields.hasErrors('name')}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Descrizione della categoria</label>
+                    <textarea class="form-control" id="description"
+                              rows="3"
+                              th:classappend="${#fields.hasErrors('description')} ? 'is-invalid' : ''"
+                              th:field="*{description}"></textarea>
+                    <div class="invalid-feedback"
+                         th:errors="*{description}"
+                         th:if="${#fields.hasErrors('description')}">
+                    </div>
+                </div>
+                <div class="col-12 text-center my-4">
+                    <button class="btn btn-primary" type="submit">Salva</button>
+                    <button class="btn btn-danger" type="reset">Annulla</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

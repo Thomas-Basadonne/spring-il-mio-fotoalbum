@@ -49,13 +49,15 @@
         <div class="col-4">
             <h3>Categorie</h3>
             <div class="form-check" th:each="category : ${categoryList}">
-                <input class="form-check-input" th:field="*{categories}" th:id="${'category_' + category.id}"
-                       th:value="${category}"
+                <input class="form-check-input" th:field="*{categories}" th:id="|cat_${category.id}|"
+                       th:value="${category.id}"
                        type="checkbox">
-                <label class="form-check-label" th:for="${'category_' + category.id}"
+                <label class="form-check-label" th:for="|cat_${category.id}|"
                        th:text="${category.name}"></label>
             </div>
         </div>
+
+
         <div class="col-12 text-center my-3">
             <button class="btn btn-primary" type="submit">Salva</button>
             <a class="btn btn-danger" th:href="@{/photos}">Annulla</a>

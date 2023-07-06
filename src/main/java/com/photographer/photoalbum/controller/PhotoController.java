@@ -68,7 +68,6 @@ public class PhotoController {
         model.addAttribute("photo", new Photo());
         // add lista ingredienti x checkbox
         model.addAttribute("categoryList", categoryRepository.findAll());
-
         //return "/photo/create";
         return "/photos/form"; // template unico create/update
     }
@@ -86,10 +85,11 @@ public class PhotoController {
             //ci sono errori!
             //rigenero form con dati photo pre caricati
             // add lista ingredienti x checkbox
-            model.addAttribute("ingredientList", categoryRepository.findAll());
+            model.addAttribute("categoryList", categoryRepository.findAll());
             return "/photos/form";
         }
         System.out.println(photoForm.getCategories());
+        model.addAttribute("categoryList", categoryRepository.findAll());
         //persisto photoForm, metodo save fa un create sql se non esiste oggetto con stessa pk se no update
         photoRepository.save(photoForm);
         //redirect home se va tutto bene
@@ -103,7 +103,7 @@ public class PhotoController {
         //recupero dati della photo e la aggiungo al model
         model.addAttribute("photo", photo);
         // add lista ingredienti x checkbox
-        model.addAttribute("ingredientList", categoryRepository.findAll());
+        model.addAttribute("categoryList", categoryRepository.findAll());
         return "/photos/form"; // template unico create/update
     }
 
@@ -118,7 +118,7 @@ public class PhotoController {
         }
         if (bindingResult.hasErrors()) {
             // add lista ingredienti x checkbox
-            model.addAttribute("ingredientList", categoryRepository.findAll());
+            model.addAttribute("categoryList", categoryRepository.findAll());
             return "photos/form";
         }
         //trasferisco dati che non sono presenti nel form x non perderli
@@ -126,6 +126,18 @@ public class PhotoController {
         //edit e salvataggio dati
         photoRepository.save(photoForm);
         redirectAttributes.addFlashAttribute("message", new AlertMessage(AlertMessageType.SUCCESS, "Photo modificata con successo!"));
+        return "redirect:/photos";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        //esiste questa photo?
+        Photo photoToDelete = getPhotoById(id);
+        //lo cancelliamo
+        photoRepository.delete(photoToDelete);
+        // add success message
+        redirectAttributes.addFlashAttribute("message", new AlertMessage(AlertMessageType.SUCCESS, "Photo " + photoToDelete.getTitolo() + " cancellata!"));
+        //redirect index
         return "redirect:/photos";
     }
 

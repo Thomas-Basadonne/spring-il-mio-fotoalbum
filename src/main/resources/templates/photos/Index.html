@@ -13,12 +13,19 @@
         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
     </div>
     <h1>Lista photo</h1>
-    <form method="GET" th:action="@{/photos}">
-        <div class="mb-3 input-group input-group-sm">
-            <input class="form-control" name="keyword" placeholder="Cerca..." th:value="${searchInput}" type="text">
-            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-    </form>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <a class="btn btn-danger" th:href="@{/photos/create}" type="button">Aggiungi
+            Photo</a>
+
+        <form method="GET" th:action="@{/photos}">
+            <div class="mb-3 input-group input-group-sm">
+                <input class="form-control" name="keyword" placeholder="Cerca..." th:value="${searchInput}" type="text">
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </form>
+    </div>
+
     <table class="table mt-3">
         <thead>
         <tr>
@@ -41,7 +48,8 @@
                         class="fa-solid fa-circle-info"></i></a>
                 <a class="mx-1" th:href="@{|/photos/edit/${photo.id}|}"><!-- th:href="@{|/photos/edit/${photo.id}|}" --><i
                         class="fa-solid fa-pen-to-square"></i></a>
-                <form method="post"> <!--th:action="@{|/photos/delete/${photo.id}|}"-->
+                <form method="post" th:action="@{|/photos/delete/${photo.id}|}">
+                    <!--th:action="@{|/photos/delete/${photo.id}|}"-->
                     <button class="p-0 border-0 text-danger bg-transparent" type="submit">
                         <i class="fa-solid fa-trash"></i>
                     </button>
