@@ -50,11 +50,13 @@ public class SecurityConfiguration {
                 .requestMatchers("/categories").hasAuthority("ADMIN")
                 .requestMatchers("/photos/edit/**").hasAuthority("ADMIN")
                 .requestMatchers("/photos/create").hasAuthority("ADMIN")
+                .requestMatchers("/api/**").permitAll()
                 .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
                 .requestMatchers("/photos/**").hasAnyAuthority("ADMIN", "USER")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .and().logout();
+        http.csrf().disable();
         return http.build();
     }
 }

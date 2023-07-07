@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{/fragments/resources :: head(pageTitle='Lista Categorie')}"></head>
-<body>
+<head th:insert="~{/fragments/resources :: head(pageTitle='Lista Categorie')}"
+      th:style="'background-color: #343a40; color: white;'">
+</head>
+<body style="background-color: #343a40;">
 <nav th:replace="~{/fragments/navbar :: navbar(current='categories')}"></nav>
-<div class="container">
-    <h1>Categorie:</h1>
-    <hr>
+<div class="container text-light">
+    <h1 class="my-4">Categorie:</h1>
+    <hr style="border-color: white;">
     <!-- lista categorie -->
     <div class="row">
         <div class="col-6">
             <ul class="list-group" th:if="${categoryList != null and categoryList.size() > 0}">
-                <li class="list-group-item d-flex align-items-center justify-content-between"
+                <li class="list-group-item d-flex align-items-center justify-content-between bg-dark text-white"
                     th:each="category : ${categoryList}" th:object="${category}">
                     <span th:text="*{name}"></span>
                     <span class="text-muted text-start" th:text="*{description}"></span>
@@ -27,8 +29,9 @@
                     </span>
                 </li>
             </ul>
-            <div class="alert alert-info" th:unless="${categoryList != null and categoryList.size() > 0}">Non ci sono
-                categorie nella lista :(
+            <div class="alert alert-info" style="background-color: #343a40; color: white;"
+                 th:unless="${categoryList != null and categoryList.size() > 0}">
+                Non ci sono categorie nella lista :(
             </div>
         </div>
         <div class="col-6">
@@ -39,25 +42,28 @@
                   th:object="${categoryObj}">
                 <input th:field="*{id}" type="hidden">
                 <div class="mb-3">
-                    <label class="form-label" for="name">Nome della categoria</label>
-                    <input class="form-control" id="name"
+                    <label class="form-label text-white" for="name">Nome della categoria</label>
+                    <input class="form-control"
+                           id="name"
+                           style="background-color: #252b31; color: white;"
                            th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
-                           th:field="*{name}"
-                           type="text">
+                           th:field="*{name}" type="text">
                     <div class="invalid-feedback"
-                         th:errors="*{name}"
-                         th:if="${#fields.hasErrors('name')}">
+                         id="description"
+                         style="color: white;"
+                         th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="description">Descrizione della categoria</label>
-                    <textarea class="form-control" id="description"
+                    <label class="form-label text-white" for="description">Descrizione della categoria</label>
+                    <textarea class="form-control"
                               rows="3"
+                              style="background-color: #252b31; color: white;"
                               th:classappend="${#fields.hasErrors('description')} ? 'is-invalid' : ''"
                               th:field="*{description}"></textarea>
                     <div class="invalid-feedback"
-                         th:errors="*{description}"
-                         th:if="${#fields.hasErrors('description')}">
+                         style="color: white;"
+                         th:errors="*{description}" th:if="${#fields.hasErrors('description')}">
                     </div>
                 </div>
                 <div class="col-12 text-center my-4">
