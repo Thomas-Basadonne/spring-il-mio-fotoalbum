@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f5c4af7-7ce3-4811-a542-c9c4feb1c9d4" name="Changes" comment="AlertMessage + AlertMessageType + Exceptions custom + create Photo + edit Photo">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/categories/index.html" afterDir="false" />
+    <list default="true" id="8f5c4af7-7ce3-4811-a542-c9c4feb1c9d4" name="Changes" comment="Role + User * security init">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/api/PhotoRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/security/DatabaseUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/controller/PhotoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/controller/PhotoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/photos/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/photos/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/photos/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/photos/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/photos/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/photos/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/security/DatabaseUserDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/security/DatabaseUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/security/DatabaseUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/photographer/photoalbum/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/import.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +25,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -112,14 +113,30 @@
       <option name="project" value="LOCAL" />
       <updated>1688652550433</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="CRUD category + navigation + fix form edit phot">
+      <created>1688655407731</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688655407731</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Role + User * security init">
+      <created>1688716637927</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688716637927</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
     <MESSAGE value="fragments + import + indexPhoto + detailPhoto + init Category" />
     <MESSAGE value="AlertMessage + AlertMessageType + Exceptions custom + create Photo + edit Photo" />
-    <option name="LAST_COMMIT_MESSAGE" value="AlertMessage + AlertMessageType + Exceptions custom + create Photo + edit Photo" />
+    <MESSAGE value="CRUD category + navigation + fix form edit phot" />
+    <MESSAGE value="Role + User * security init" />
+    <option name="LAST_COMMIT_MESSAGE" value="Role + User * security init" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
