@@ -29,20 +29,21 @@
     <table class="table mt-3">
         <thead>
         <tr>
-            <th>Titolo</th>
-            <th>Descrizione</th>
-            <th>URL</th>
-            <th>Azioni</th>
-            <th>data</th>
+            <th class="text-center">Titolo</th>
+            <th class="text-center">Descrizione</th>
+            <th class="text-center">URL</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Azioni</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="photo : ${photoList}">
-            <td th:text="${photo.titolo}"></td>
-            <td th:text="${photo.descrizione}"></td>
-            <td>
+            <td class="text-center" th:text="${photo.titolo}"></td>
+            <td class="text-center" th:text="${photo.descrizione}"></td>
+            <td class="text-center">
                 <a target="_blank" th:href="${photo.url}" th:text="${photo.url}"></a>
             </td>
+            <td class="text-center" th:text="${photo.getFormattedCreatedAt()}"></td>
             <td class="d-flex justify-content-evenly align-items-center">
                 <a class="mx-1" th:href="@{|/photos/${photo.id}|}"><!--th:href="@{|/photos/${photo.id}|}"--><i
                         class="fa-solid fa-circle-info"></i></a>
@@ -55,7 +56,7 @@
                     </button>
                 </form>
             </td>
-            <td th:text="${photo.getFormattedCreatedAt()}"></td>
+
         </tr>
         </tbody>
     </table>
