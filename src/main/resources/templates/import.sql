@@ -28,3 +28,16 @@ INSERT INTO photo_category (photo_id, category_id) VALUES (7, 3);
 INSERT INTO photo_category (photo_id, category_id) VALUES (8, 4);
 INSERT INTO photo_category (photo_id, category_id) VALUES (9, 1);
 INSERT INTO photo_category (photo_id, category_id) VALUES (10, 2);
+
+--Security
+--Users
+INSERT INTO users (first_name, last_name, email, password) VALUES ('Thomas', 'Basadonne', 'basa@mail.com', 'qwerty123');
+INSERT INTO users (first_name, last_name, email, password) VALUES ('Utente', 'User', 'user@mail.com', 'qwerty123');
+
+--Roles
+INSERT INTO roles (id, name) VALUES(1,'ADMIN');
+INSERT INTO roles (id, name) VALUES(2,'USER');
+
+--User-Roles
+INSERT INTO users_roles (roles_id, user_id) VALUES(1, 1);
+INSERT INTO users_roles (roles_id, user_id) VALUES(2, 2);
