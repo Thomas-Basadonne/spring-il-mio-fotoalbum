@@ -10,11 +10,11 @@
     <div class="alert alert-dismissible fade show mt-5" role="alert"
          th:classappend="${#strings.equalsIgnoreCase(message.type, 'SUCCESS')} ? 'alert-success' : 'alert-danger'"
          th:if="${message != null and message.type != null}">
-        <div th:text="${message.message}"></div>
+        <div class="text-light" th:text="${message.message}"></div>
         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
     </div>
     <div class="my-5 text-center">
-        <h1 style="color: white;">Lista delle mie foto :)</h1>
+        <h1 class="text-light">Lista delle mie foto :)</h1>
     </div>
 
     <div class="d-flex justify-content-between align-items-baseline">
@@ -31,21 +31,21 @@
     <table class="table mt-3 table-dark table-striped-columns">
         <thead>
         <tr>
-            <th class="text-center">Titolo</th>
-            <th class="text-center">Descrizione</th>
-            <th class="text-center">URL</th>
-            <th class="text-center">Data</th>
-            <th class="text-center">Azioni</th>
+            <th class="text-center text-light">Titolo</th>
+            <th class="text-center text-light">Descrizione</th>
+            <th class="text-center text-light">URL</th>
+            <th class="text-center text-light">Data</th>
+            <th class="text-center text-light">Azioni</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="photo : ${photoList}">
-            <td class="text-center" th:text="${photo.titolo}"></td>
-            <td class="text-center" th:text="${photo.descrizione}"></td>
-            <td class="text-center">
+            <td class="text-center text-light" th:text="${photo.titolo}"></td>
+            <td class="text-center text-light" th:text="${photo.descrizione}"></td>
+            <td class="text-center text-light">
                 <a target="_blank" th:href="${photo.url}" th:text="${photo.url}"></a>
             </td>
-            <td class="text-center" th:text="${photo.getFormattedCreatedAt()}"></td>
+            <td class="text-center text-light" th:text="${photo.getFormattedCreatedAt()}"></td>
             <td class="d-flex justify-content-evenly align-items-center">
                 <a class="mx-1" th:href="@{|/photos/${photo.id}|}">
                     <i class="fa-solid fa-circle-info"></i>
