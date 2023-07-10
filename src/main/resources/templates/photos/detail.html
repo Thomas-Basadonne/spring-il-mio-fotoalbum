@@ -14,26 +14,28 @@
         <div class="card-body">
             <h5 class="card-title" style="color: white;" th:text="*{titolo}"></h5>
             <p class="card-text" style="color: white;" th:text="*{descrizione}"></p>
+            <h6 class="card-title" style="color: white;">Categorie:</h6>
+            <div>
+                <!--L'operatore di sicurezza di navigazione ? viene utilizzato per accedere alle proprietà di un oggetto solo se l'oggetto stesso non è null.  -->
+                <ul class="list-group list-group-flush " th:if="${photo.categories?.size() > 0}">
+                    <li class="list-group-item text-center text-light "
+                        style="background-color: #343a40; color: white;" th:each="category : ${photo.categories}"
+                        th:text="${category.name}"></li>
+                </ul>
+                <div class="alert alert-info" style="background-color: #343a40; color: white;"
+                     th:unless="${photo.categories?.size() > 0}">
+                    Non sono stati aggiunti category
+                </div>
+            </div>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item text-start" style="background-color: #343a40; color: white;"
-                th:text="'Foto caricata il ' + *{getFormattedCreatedAt()}"></li>
-            <li class="list-group-item text-start" style="background-color: #343a40; color: white;"
-                th:text="'Foto aggiornata il ' + *{getDataModifica}"></li>
+            <li class="list-group-item d-flex justify-content-between" style="background-color: #343a40; color: white;">
+                <span th:text="'Foto caricata il ' + *{getFormattedCreatedAt()}"></span>
+                <span th:text="'Foto aggiornata il ' + *{getFormattedUpdateAt()}"></span>
+            </li>
         </ul>
         <div class="card-footer text-body-secondary">
             <a class="btn btn-primary" style="background-color: #343a40;" th:href="@{/photos}">Torna alla lista</a>
-        </div>
-    </div>
-    <div>
-        <h2 style="color: white;">category:</h2>
-        <!--L'operatore di sicurezza di navigazione ? viene utilizzato per accedere alle proprietà di un oggetto solo se l'oggetto stesso non è null.  -->
-        <ul th:if="${photo.categories?.size() > 0}">
-            <li style="color: white;" th:each="category : ${photo.categories}" th:text="${category.name}"></li>
-        </ul>
-        <div class="alert alert-info" style="background-color: #343a40; color: white;"
-             th:unless="${photo.categories?.size() > 0}">
-            Non sono stati aggiunti category
         </div>
     </div>
 </div>

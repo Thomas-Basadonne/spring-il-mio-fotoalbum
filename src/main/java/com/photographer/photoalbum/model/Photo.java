@@ -28,12 +28,9 @@ public class Photo {
 
     private boolean visibile;
 
-    @Column(name = "data_caricamento")
+    @Column(name = "data_caricamento", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    private LocalDateTime dataModifica;
-
-
+    private LocalDateTime dataModifica = LocalDateTime.now();
     @ManyToMany
     @JoinTable(
             name = "photo_category",
@@ -41,6 +38,12 @@ public class Photo {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories = new ArrayList<>();
+
+
+    @PreUpdate
+    public void updateDataModifica() {
+        this.dataModifica = LocalDateTime.now();
+    }
 
 
     // Getter e setter
@@ -116,5 +119,16 @@ public class Photo {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy 'alle' HH:mm");
         return createdAt.format(formatter);
     }
+
+    @JsonIgnore
+    public String getFormattedUpdateAt() {
+        if (dataModifica != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd'/'MM'/'yyyy 'alle' HH:mm");
+            return dataModifica.format(formatter);
+        } else {
+            return "N/A";
+        }
+    }
+
 
 }
